@@ -33,7 +33,7 @@
 # Creation date: 2014-05-27
 
 import pandas as pd
-from datetime import datetime
+from datetime import datetime, timedelta
 from poets.timedate.dekad import dekad_index
 
 
@@ -63,7 +63,9 @@ def get_dtindex(interval, begin, end=None):
     elif interval in ['daily', 'day', '1']:
         dtindex = pd.date_range(begin, end, freq='D')
     elif interval in ['weekly', 'week', '7']:
-        dtindex = pd.date_range(begin, end, freq='7D')
+        # return last day of calendar week
+        begin2 = begin - timedelta(begin.weekday()) + timedelta(6)
+        dtindex = pd.date_range(begin2, end, freq='7D')
     elif interval in ['monthly', 'month']:
         dtindex = pd.date_range(begin, end, freq='M')
 

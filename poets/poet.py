@@ -49,7 +49,7 @@ from poets.io.source_base import BasicSource
 import poets.web.app as app
 
 
-valid_temp_res = ['dekad', 'month']
+valid_temp_res = ['dekadal', 'monthly', 'weekly', 'daily']
 
 
 class Poet(object):
@@ -118,8 +118,8 @@ class Poet(object):
         self.regions = regions
         self.spatial_resolution = spatial_resolution
 
-        if temporal_resolution not in ['dekad', 'month']:
-            raise ValueError("Temporal resulution must be one of " +
+        if temporal_resolution not in ['dekadal', 'monthly', 'weekly', 'daily']:
+            raise ValueError("Temporal resolution must be one of " +
                              str(valid_temp_res))
 
         self.temporal_resolution = temporal_resolution
